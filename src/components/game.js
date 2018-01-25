@@ -13,7 +13,8 @@ export default class Game extends React.Component {
       inputList: [],
       randNum: Math.floor(Math.random() * (100) ) + 1,
       feedback: 'Make your guess!',
-      isDisabled: false
+      isDisabled: false,
+      showModal: false 
     };
   }
     
@@ -38,14 +39,18 @@ export default class Game extends React.Component {
     let distance = Math.abs(inputNum - this.state.randNum);
     let disabled = false;
     if (distance === 0) {fb = 'You won.'; disabled = true;}
-    else if (distance <= 5) {fb = 'SUPER HOT'}
-    else if (distance <= 10) {fb = 'HOT'; console.log('should be hot')}
-    else {fb = 'COLD'; console.log('should be cold')}   
+    else if (distance <= 5) {fb = 'SUPER HOT';}
+    else if (distance <= 10) {fb = 'HOT'; console.log('should be hot');}
+    else {fb = 'COLD'; console.log('should be cold');}   
     this.setState({
-        inputList: [...this.state.inputList, inputNum],
-        feedback: fb,
-        isDisabled: disabled
-        });
+      inputList: [...this.state.inputList, inputNum],
+      feedback: fb,
+      isDisabled: disabled
+    });
+  }
+
+  howToPlay(){
+    this.setState({showModal: !this.state.showModal});
   }
 
   render() {
@@ -56,9 +61,9 @@ export default class Game extends React.Component {
 
     return (
             <div>
-                <Header resetGame={() => this.reset()}/> 
+                <Header resetGame={() => this.reset()} isShowing={this.state.showModal} displayModal={() => this.howToPlay()}/> 
                 <GuessSection onSubmit={inputNum=> {
-                    this.submitAnswer(inputNum)
+                  this.submitAnswer(inputNum);
                 }} feedback={this.state.feedback} isDisabled={this.state.isDisabled}/>
                 <GuessCount count={this.state.inputList.length} />
                 <GuessList guesses={this.state.inputList} />
