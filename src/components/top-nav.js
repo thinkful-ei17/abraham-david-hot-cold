@@ -3,7 +3,7 @@ import React from 'react';
 import './top-nav.css';
 
 export default function TopNav(props) {
-    return (
+  return (
         <nav>
             <ul className="clearfix">
                 <li>
@@ -12,7 +12,7 @@ export default function TopNav(props) {
                     </a>
                 </li>
                 <li>
-                    <a className="new" href="#">
+                    <a className="new" href="#" onClick={() => props.resetGame()}>
                         + New Game
                     </a>
                 </li>

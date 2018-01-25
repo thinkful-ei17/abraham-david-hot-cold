@@ -6,29 +6,29 @@ import GuessCount  from './guess-count';
 import GuessList from './guess-list';
 
 export default class Game extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+      super(props);
         
-        this.state =  {
-            inputList: [],
-            randNum: Math.floor(Math.random() * (100) ) + 1
-        }
+      this.state =  {
+          inputList: [],
+          randNum: Math.floor(Math.random() * (100) ) + 1
+        };
     }
     
-    reset() {
-        this.setState({
-            inputList: [],
-            randNum: Math.floor(Math.random() * (100) ) + 1
-        })
+  reset() {
+      this.setState({
+          inputList: [],
+          randNum: Math.floor(Math.random() * (100) ) + 1
+        });
     }
 
-    render() {
-        if (this.state.inputList.indexOf(this.state.randNum.toString())!==-1) {
-            console.log('number found!');
+  render() {
+      if (this.state.inputList.indexOf(this.state.randNum.toString())!==-1) {
+          console.log('number found!');
         }
-        return (
+      return (
             <div>
-                <Header />
+                <Header resetGame={() => this.reset()}/> 
                 <GuessSection onSubmit={inputNum=> this.setState({inputList: [...this.state.inputList, inputNum]})} feedback="Make your guess!" />
                 <GuessCount count={this.state.inputList.length} />
                 <GuessList guesses={this.state.inputList} />

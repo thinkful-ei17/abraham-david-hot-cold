@@ -6,11 +6,11 @@ import InfoModal from './info-modal';
 import './header.css';
 
 export default function Header(props) {
-    return (
+  return (
         <header>
-            <TopNav />
+            <TopNav resetGame={() => props.resetGame()}/>
             {/* <InfoModal /> */}
             <h1>HOT or COLD</h1>
         </header>
     );
-};
+}
