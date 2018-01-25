@@ -9,12 +9,14 @@ export default function GuessForm(props) {
           console.log(document.querySelector('[name=userGuess]').value);
           props.onSubmit(document.querySelector('[name=userGuess]').value);
           document.querySelector('[name=userGuess]').value='';
+          console.log(props.isDisabled);
+        //   props.isDisabled ? disabled : ''
         }
             }>
-            <input type="text" name="userGuess" id="userGuess"
+            <input disabled={props.isDisabled} type="text" name="userGuess" id="userGuess"
                 className="text" maxLength="3" autoComplete="off"
                 placeholder="Enter your Guess" required />
-            <input  type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
+            <input disabled={props.isDisabled} type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
         </form>
     );
 }
